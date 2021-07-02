@@ -49,6 +49,8 @@
 * _create an account with emial and new password_
 * _once approved your API Key will be displayed._
 * _Enter your example request into Postman and hit send to see your results_
+* _Create a .env file at the top of your directory and place your APIKEY inside as a variable_
+* _Add .env file to .gitignore in order to keep key from uploading to github_
 
 ## Known Bugs
 
