@@ -2,26 +2,28 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import CurrencyConverter from './services/js/currencyApi'
+import CurrencyConverter from './services/js/currencyApi.js'
 
-function displayCurrencyConverter(response){
+function getNewCurrency(response) {
+  let country = $('#country').val();
+  let AEDConversion = $('#dollar').val() * response.conversion_rates.AED
   if (response) {
-    $('.currencyconverter').empty();
-    for (let i =0; i < response.conversion_rates.length; i++) {
-  $('.currencyconverter').append(`
-  <tr>
-    <td>${response.conversion_rates[i]}</td>
-  </tr>`);
-  }
-  } else 
-  {
+    if(country === 'United Emirates Dirham') {
+      $('#currency').html(`The conversion in AMD is ${AEDConversion}`)
+    }
+  } else {
     $('.showErrors').text(`There was an error: ${response.message}`);
   }
 }
 
 
 $(document).ready(function() {
-  
+  $('#currency').click(function() {
+    CurrencyConverter.getNewCurrency()
+    .then(function(response) {
+      getNewCurrency(response)
+    })
+  })
   });
 
   

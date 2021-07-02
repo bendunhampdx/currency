@@ -8,13 +8,19 @@
 <body>
   <div class="container">
     <h1>Convert USD into a currency of your choosing!</h1>
-    <label for="dollar">Enter a dollar amount</label>
-    <input id="dollar" type="text">
-    <label for="money">Enter a currency code to convert to</label>
-    <input id="money" type="text">
+    <label for="dollar">Enter a USD amount</label>
+    <input id="dollar" type="number">
+    <select id="country" aria-label="Default select example">
+      <option selected>Choose a currency to convert to</option>
+      <option value="United Emirates Dirham">United Emirates Dirham (AED)</option>
+      <option value="Afgan Afghani">Afgan Afghani (AFN)</option>
+      <option value="Albanian Lek">Albanian Lek (ALL)</option>
+      <option value="Albanian Lek">Armenian Dram (AMD)</option>
+      <option value="Albanian Lek">Netherlands Antillean Guilder (ANG)</option>
+    </select>
     <button class="btn-success" id="currency">Get your currency conversion</button>
     <hr>
-    <div class="currencyconverter"></div>
+    <div class="showErrors"></div>
   </div>
 </body>
 </html>
