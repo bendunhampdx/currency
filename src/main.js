@@ -10,6 +10,7 @@ function getNewCurrency(response) {
   let AFNConversion = $('#dollar').val() * response.conversion_rates.AFN
   let ALLConversion = $('#dollar').val() * response.conversion_rates.ALL
   let AMDConversion = $('#dollar').val() * response.conversion_rates.AMD
+  let ANGConversion = $('#dollar').val() * response.conversion_rates.ANG
   if (response) {
     if(country === 'United Emirates') {
       $('#currency').html(`The conversion in AMD is ${AEDConversion}`)
@@ -22,6 +23,9 @@ function getNewCurrency(response) {
     }
     else if(country === 'Armenia') {
       $('#currency').html(`The conversion in ALL is ${AMDConversion}`)
+    }
+    else if(country === 'Netherlands') {
+      $('#currency').html(`The conversion in ANG is ${ANGConversion}`)
     }
   } else {
     $('.showErrors').text(`There was an error: ${response.message}`);
