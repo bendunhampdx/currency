@@ -1,17 +1,20 @@
-# (Application Name)
+# Currency Converter
 
-#### (Brief Description of Application)
+#### Application Will convert a USD amount into a currency of the user's choosing
 
-#### By (Your Name Here)
+#### By Ben Dunham
 
 ## Technologies Used
 
-* _List all_
-* _the major technologies_
-* _you used in your project_
-* _here_
+* _HTML_
+* _JavaScript_
+* _JQuery_
+* _Bootstrap_
+* _eslint_
+* _webpack_
 
 ## Description
+* _This application is designed to convert any amount of USD inputter by user to 1 of five different currencies._
 
 ## Setup/Installation Requirements
 
