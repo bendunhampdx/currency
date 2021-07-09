@@ -12,27 +12,30 @@ function getElements(response) {
   let AMDConversion = $('#dollar').val() * response.conversion_rates.AMD;
   let ANGConversion = $('#dollar').val() * response.conversion_rates.ANG;
   let PUDConversion = $('#dollar').val() * response.conversion_rates.PUD;
-  if (response) {
-    if (country === 'United Emirates') {
-      $('#currency').html(`The conversion in AMD is ${AEDConversion}`);
-    }
-    else if (country === 'Afghanistan') {
-      $('#currency').html(`The conversion in AFN is ${AFNConversion}`);
-    }
-    else if (country === 'Albania') {
-      $('#currency').html(`The conversion in ALL is ${ALLConversion}`);
-    }
-    else if (country === 'Armenia') {
-      $('#currency').html(`The conversion in ALL is ${AMDConversion}`);
-    }
-    else if (country === 'Netherlands') {
-      $('#currency').html(`The conversion in ANG is ${ANGConversion}`);
-    }
-    else if (country === 'Puddleland') {
-      $('#currency').html(`The conversion in PUD is ${PUDConversion}`);
-    }
-  } else {
-    $('.showErrors').text(`There was an error: ${response.message}`);
+
+  if (response["error-type"] === "unsupported-code" || response["error-type"] === "malformed-request" || (response["error-type"] === undefined && response.result !== "success")) {
+    $(".showErrors");
+  }
+  else if (country === 'United Emirates') {
+    $('#currency').html(`The conversion in AMD is ${AEDConversion}`);
+  }
+  else if (country === 'Afghanistan') {
+    $('#currency').html(`The conversion in AFN is ${AFNConversion}`);
+  }
+  else if (country === 'Albania') {
+    $('#currency').html(`The conversion in ALL is ${ALLConversion}`);
+  }
+  else if (country === 'Armenia') {
+    $('#currency').html(`The conversion in ALL is ${AMDConversion}`);
+  }
+  else if (country === 'Netherlands') {
+    $('#currency').html(`The conversion in ANG is ${ANGConversion}`);
+  }
+  else if (country === 'Puddleland') {
+    $('#currency').html(`The conversion in PUD is ${PUDConversion}`);
+  }
+  else {
+    $('.showErrors').text(`There was an error: ${response["error-type"]}`);
   }
 }
 
