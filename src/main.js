@@ -6,36 +6,37 @@ import CurrencyConverter from './services/js/currencyApi.js';
 
 function getElements(response) {
   let country = $('#country').val();
-  let AEDConversion = $('#dollar').val() * response.conversion_rates.AED;
-  let AFNConversion = $('#dollar').val() * response.conversion_rates.AFN;
-  let ALLConversion = $('#dollar').val() * response.conversion_rates.ALL;
-  let AMDConversion = $('#dollar').val() * response.conversion_rates.AMD;
-  let ANGConversion = $('#dollar').val() * response.conversion_rates.ANG;
-  let PUDConversion = $('#dollar').val() * response.conversion_rates.PUD;
 
-  if (response["error-type"] === "unsupported-code" || response["error-type"] === "malformed-request" || (response["error-type"] === undefined && response.result !== "success")) {
-    $(".showErrors");
+  if (response.result !== "success") {
+    const errorTypeIfExists = (response && response['error-type']) ? response['error-type'] : null;
+    $(".showErrors").html(`There was an error and the type was ${errorTypeIfExists}!`);
   }
   else if (country === 'United Emirates') {
+    let AEDConversion = $('#dollar').val() * response.conversion_rates.AED;
     $('#currency').html(`The conversion in AMD is ${AEDConversion}`);
   }
   else if (country === 'Afghanistan') {
+    let AFNConversion = $('#dollar').val() * response.conversion_rates.AFN;
     $('#currency').html(`The conversion in AFN is ${AFNConversion}`);
   }
   else if (country === 'Albania') {
+    let ALLConversion = $('#dollar').val() * response.conversion_rates.ALL;
     $('#currency').html(`The conversion in ALL is ${ALLConversion}`);
   }
   else if (country === 'Armenia') {
+    let AMDConversion = $('#dollar').val() * response.conversion_rates.AMD;
     $('#currency').html(`The conversion in ALL is ${AMDConversion}`);
   }
   else if (country === 'Netherlands') {
+    let ANGConversion = $('#dollar').val() * response.conversion_rates.ANG;
     $('#currency').html(`The conversion in ANG is ${ANGConversion}`);
   }
   else if (country === 'Puddleland') {
+    let PUDConversion = $('#dollar').val() * response.conversion_rates.PUD;
     $('#currency').html(`The conversion in PUD is ${PUDConversion}`);
   }
   else {
-    $('.showErrors').text(`There was an error: ${response["error-type"]}`);
+    $('.showErrors').text(`There was an error: ${response.message}`);
   }
 }
 
@@ -45,6 +46,8 @@ $(document).ready(function () {
     CurrencyConverter.getNewCurrency()
       .then(function (response) {
         getElements(response);
+      }).catch(function () {
+        $('.showErrors').text(`There was an error fetching information from the API.`);
       });
   });
 });
